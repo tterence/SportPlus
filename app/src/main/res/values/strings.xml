@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">SportPlus</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="contest">Créer un match</string>
+    <string name="historique">Historique</string>
+    <string name="map">Map</string>
+    <string name="message">Messages</string>
+    <string name="share">Share</string>
+    <string name="slideshow">Slideshow</string>
+    <string name="tools">Tools</string>
+    <string name="android_studio_android_com">android.studio@android.com</string>
+    <string name="android_studio">Android Studio</string>
+    <string name="image">image</string>
+    <string name="title_activity_maps_fragment">Map</string>
+    <string name="launcher">image launcher</string>
+</resources>
