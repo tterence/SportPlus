@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RB1"
+                android:checked="true"
+                android:text="@string/team1"
+                android:layout_weight="0.25"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RB2"
+                android:text="@string/team2"
+                android:layout_weight="0.25"/>
+        </RadioGroup>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RB3"
+                android:text="@string/team1"
+                android:layout_weight="0.25"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RB4"
+                android:text="@string/team2"
+                android:checked="true"
+                android:layout_weight="0.25"/>
+        </RadioGroup>
+    </RelativeLayout>
+
+</FrameLayout>

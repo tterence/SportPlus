@@ -103,7 +103,8 @@ public class MapsFragment extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        // Sets the map type to be "hybrid"
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         // Add a marker in Sydney and move the camera
         LatLng mPos = new LatLng(lat, lng);
         mMap.addMarker(new MarkerOptions().position(mPos).title("My Position"));
@@ -140,14 +141,16 @@ public class MapsFragment extends FragmentActivity implements OnMapReadyCallback
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
+                    // contacts-related task you need to do.return;
+                    return;
                 } else {
 
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                     Toast.makeText(MapsFragment.this, "Read location permission is denied", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                return;
+
             }
             // other 'case' lines to check for other
             // permissions this app might request

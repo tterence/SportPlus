@@ -17,4 +17,7 @@
     <string name="image">image</string>
     <string name="title_activity_maps_fragment">Map</string>
     <string name="launcher">image launcher</string>
+    <string name="team1">Paris SG</string>
+    <string name="team2">Olympique Marseille</string>
+
 </resources>
