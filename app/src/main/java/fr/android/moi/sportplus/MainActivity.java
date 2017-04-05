@@ -18,7 +18,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, myFragment.OnFragmentInteractionListener {
     private myFragment myFragment;
-    private contestFragment contestFragment;
+    //private contestFragment contestFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction fgt = getSupportFragmentManager().beginTransaction();
         fgt.addToBackStack("new fragment");
         if (id == R.id.nav_contest) {
-            contestFragment= contestFragment.newInstance("contest","contestFragment");
-            fgt.replace(R.id.content_main, contestFragment).commit();
+            //contestFragment= contestFragment.newInstance("contest","contestFragment");
+            //fgt.replace(R.id.content_main, contestFragment).commit();
         } else if (id == R.id.nav_historique) {
 
         } else if (id == R.id.nav_map) {
