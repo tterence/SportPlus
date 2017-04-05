@@ -19,5 +19,8 @@
     <string name="launcher">image launcher</string>
     <string name="team1">Paris SG</string>
     <string name="team2">Olympique Marseille</string>
+    <string name="start">Commencer match</string>
+    <string name="time1">temps: 1min</string>
+    <string name="time2">temps: 2min</string>
 
 </resources>

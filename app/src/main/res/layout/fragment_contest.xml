@@ -9,6 +9,7 @@
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/RG1"
             android:gravity="start">
             <RadioButton
                 android:layout_width="wrap_content"
@@ -27,6 +28,7 @@
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/RG2"
             android:gravity="end">
             <RadioButton
                 android:layout_width="wrap_content"
@@ -42,6 +44,52 @@
                 android:checked="true"
                 android:layout_weight="0.25"/>
         </RadioGroup>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/RG3"
+            android:gravity="start"
+            android:layout_above="@id/RG1">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RB5"
+                android:checked="true"
+                android:text="@string/time1"
+                android:layout_weight="0.25"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RB6"
+                android:text="@string/time2"
+                android:layout_weight="0.25"/>
+        </RadioGroup>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/RG4"
+            android:layout_above="@id/RG2"
+            android:gravity="end">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RB7"
+                android:text="@string/time1"
+                android:layout_weight="0.25"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RB8"
+                android:text="@string/time2"
+                android:checked="true"
+                android:layout_weight="0.25"/>
+        </RadioGroup>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/contest"
+            android:text="@string/start"
+            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 
 </FrameLayout>
