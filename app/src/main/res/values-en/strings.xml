@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SportPlus</string>
+    <string name="contest">Start a contest</string>
+    <string name="historique">Previous contests</string>
+    <string name="start">Begin contest</string>
+    <string name="team1">Chelsea</string>
+    <string name="team2">Arsenal</string>
+    <string name="time1">time: 1min</string>
+    <string name="time2">time: 2min</string>
+</resources>

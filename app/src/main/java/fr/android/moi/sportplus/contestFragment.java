@@ -18,6 +18,7 @@ public class contestFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private RadioGroup rg1;
     private RadioGroup rg2;
+    private int checked1,checked2;
     public contestFragment(){
 
     }
@@ -44,14 +45,14 @@ public class contestFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_contest, container,
                 false);
         rg1 = (RadioGroup) view.findViewById(R.id.RG1);
-        int checked1 = rg1.getCheckedRadioButtonId();
+        checked1 = rg1.getCheckedRadioButtonId();
         rg2 = (RadioGroup) view.findViewById(R.id.RG2);
-        int checked2 = rg2.getCheckedRadioButtonId();
+        checked2 = rg2.getCheckedRadioButtonId();
         Button Bstart = (Button) view.findViewById(R.id.contest);
         Bstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //TODO begin thread and store data
             }
         });
         return view;
