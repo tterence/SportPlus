@@ -22,5 +22,32 @@
     <string name="start">Commencer match</string>
     <string name="time1">temps: 1min</string>
     <string name="time2">temps: 2min</string>
+    <string name="choisir_la_date_de_rencontre">Choisir la date de rencontre</string>
+    <string name="choisir_la_dur_e_r_elle_de_rencpntre">Choisir la durée réelle de rencpntre</string>
+    <string name="teamchoice">Choisir les équipes</string>
+    <string name="composition">Choisir la composition de chaque équipe</string>
+    <string name="lieu">Choisir le lieu de rencontre</string>
+    <string-array name="gardien">
+        <item>Kévin Trapp</item>
+        <item>Alphonse Aréola</item>
+    </string-array>
+    <string-array name="defenseur">
+        <item>Thiago Silva</item>
+        <item>Marquinhos</item>
+    </string-array>
+    <string-array name="milieu">
+        <item>Marco Verratti</item>
+        <item>Thiago Motta</item>
+    </string-array>
+    <string-array name="attaquant">
+        <item>Edinson Cavani</item>
+        <item>Hatem Ben Arfa</item>
+    </string-array>
+    <string-array name="psg">
+        <item>@array/gardien</item>
+        <item>@array/defenseur</item>
+        <item>@array/milieu</item>
+        <item>@array/attaquant</item>
+    </string-array>
 
 </resources>

@@ -53,6 +53,7 @@ public class contestFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO begin thread and store data
+
             }
         });
         return view;

@@ -3,10 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
+
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/teamchoice"/>
         <RadioGroup
+            android:layout_below="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/RG1"
@@ -26,6 +36,7 @@
                 android:layout_weight="0.25"/>
         </RadioGroup>
         <RadioGroup
+            android:layout_below="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/RG2"
@@ -44,46 +55,129 @@
                 android:checked="true"
                 android:layout_weight="0.25"/>
         </RadioGroup>
-        <RadioGroup
+        <TextView
+            android:layout_below="@+id/RG1"
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="wrap_content"
+            android:text="@string/choisir_la_dur_e_r_elle_de_rencpntre" />
+        <RadioGroup
             android:id="@+id/RG3"
-            android:gravity="start"
-            android:layout_above="@id/RG1">
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/RB5"
-                android:checked="true"
-                android:text="@string/time1"
-                android:layout_weight="0.25"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/RB6"
-                android:text="@string/time2"
-                android:layout_weight="0.25"/>
-        </RadioGroup>
-        <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/RG4"
-            android:layout_above="@id/RG2"
-            android:gravity="end">
+            android:layout_below="@id/textView2"
+            android:gravity="center">
+
             <RadioButton
+                android:id="@+id/RB5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/RB7"
-                android:text="@string/time1"
-                android:layout_weight="0.25"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/RB8"
-                android:text="@string/time2"
+                android:layout_weight="0.25"
                 android:checked="true"
-                android:layout_weight="0.25"/>
+                android:text="@string/time1" />
+
+            <RadioButton
+                android:id="@+id/RB6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="@string/time2" />
+
+
         </RadioGroup>
+        <TextView
+        android:id="@+id/textView3"
+            android:layout_below="@id/RG3"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="@string/choisir_la_date_de_rencontre" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:inputType="date"
+            android:layout_below="@+id/textView3"
+            android:layout_centerHorizontal="true" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_below="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/lieu"/>
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_below="@id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:ems="5"
+            android:inputType="textPostalAddress" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_below="@+id/editText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/composition"/>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView5">
+            <TableRow>
+
+                <Spinner
+                    android:id="@+id/gardien1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/gardien"/>
+            </TableRow>
+            <TableRow>
+
+                <Spinner
+                    android:id="@+id/defenseur11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/defenseur"/>
+                <Spinner
+                    android:id="@+id/defenseur12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/defenseur"/>
+            </TableRow>
+            <TableRow>
+            <Spinner
+                android:id="@+id/milieu11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/milieu"/>
+            <Spinner
+                android:id="@+id/milieu12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/milieu"/>
+            </TableRow>
+            <TableRow>
+                <Spinner
+                    android:id="@+id/attaquant11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/attaquant"/>
+                <Spinner
+                    android:id="@+id/attaquant12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/attaquant"/>
+            </TableRow>
+        </TableLayout>
+
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
