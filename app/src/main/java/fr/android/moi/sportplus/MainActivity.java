@@ -31,8 +31,10 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                FragmentTransaction fgt = getSupportFragmentManager().beginTransaction();
+                fgt.addToBackStack("new fragment");
+                contestFragment= contestFragment.newInstance("contest","contestFragment");
+                fgt.replace(R.id.content_main, contestFragment).commit();
             }
         });
 

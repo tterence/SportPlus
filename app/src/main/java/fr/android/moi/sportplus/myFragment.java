@@ -195,6 +195,7 @@ public class myFragment extends Fragment implements OnMapReadyCallback,LocationL
         // Sets the map type to be "hybrid"
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         // Add a marker in Sydney and move the camera
+        mMap.clear();
         LatLng mPos = new LatLng(lat, lng);
         mMap.addMarker(new MarkerOptions().position(mPos).title("My Position"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(mPos));
