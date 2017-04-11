@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimaryDark">
 
 
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="UselessParent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
         <TextView
         android:id="@+id/textView"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -19,6 +26,8 @@
         <RadioGroup
             android:layout_below="@+id/textView"
             android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:layout_height="wrap_content"
             android:id="@+id/RG1"
             android:gravity="start">
@@ -39,6 +48,8 @@
         <RadioGroup
             android:layout_below="@+id/textView"
             android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:layout_height="wrap_content"
             android:id="@+id/RG2"
             android:gravity="end">
@@ -60,12 +71,16 @@
             android:layout_below="@+id/RG1"
             android:id="@+id/textView2"
             android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:layout_height="wrap_content"
             android:text="@string/choisir_la_dur_e_r_elle_de_rencpntre" />
         <RadioGroup
             android:id="@+id/RG3"
             android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/textView2"
             android:gravity="center">
@@ -88,36 +103,46 @@
 
         </RadioGroup>
         <TextView
-        android:id="@+id/textView3"
+            android:id="@+id/textView3"
             android:layout_below="@id/RG3"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:text="@string/choisir_la_date_de_rencontre" />
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="@string/choisir_la_date_de_rencontre" />
 
         <EditText
             android:id="@+id/editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="5"
-            android:inputType="date"
             android:layout_below="@+id/textView3"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:ems="5"
+            android:hint="@android:string/untitled"
+            android:inputType="date" />
         <TextView
             android:id="@+id/textView4"
             android:layout_below="@+id/editText"
             android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/lieu"/>
 
         <EditText
             android:id="@+id/editText2"
-            android:layout_below="@id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/textView4"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:ems="5"
+            android:hint="@android:string/unknownName"
             android:inputType="textPostalAddress" />
 
         <TextView
@@ -125,12 +150,16 @@
             android:layout_below="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="@string/composition"/>
         <TableLayout
             android:id="@+id/Dom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:gravity="start"
             android:layout_below="@id/textView5">
             <TableRow>
@@ -179,19 +208,33 @@
                     android:entries="@array/attaquant"/>
             </TableRow>
         </TableLayout>
-        <EditText
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_below="@+id/Dom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/Dom"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/Nom"/>
+        <EditText
             android:id="@+id/Nom"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView6"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:inputType="text" />
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@android:drawable/ic_menu_camera" />
+            android:gravity="end"
+            app:srcCompat="@android:drawable/ic_menu_camera"
+            tools:ignore="RelativeOverlap"
+            android:layout_alignTop="@+id/editText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <Button
             android:layout_width="wrap_content"
@@ -200,5 +243,6 @@
             android:text="@string/start"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
+</ScrollView>
 
 </FrameLayout>

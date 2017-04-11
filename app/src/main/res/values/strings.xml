@@ -27,6 +27,7 @@
     <string name="teamchoice">Choisir les équipes</string>
     <string name="composition">Choisir la composition de chaque équipe</string>
     <string name="lieu">Choisir le lieu de rencontre</string>
+    <string name="Nom">Choisir le nom de la rencontre</string>
     <string-array name="gardien">
         <item>Kévin Trapp</item>
         <item>Alphonse Aréola</item>

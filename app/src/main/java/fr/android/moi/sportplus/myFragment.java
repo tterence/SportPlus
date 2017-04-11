@@ -210,6 +210,7 @@ public class myFragment extends Fragment implements OnMapReadyCallback,LocationL
 
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.return;
+                    this.onStart();
                     return;
                 } else {
 

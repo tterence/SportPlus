@@ -1,26 +1,34 @@
 package fr.android.moi.sportplus;
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
 
 /**
  * Created by Admin on 05/04/2017.
  */
 public class contestFragment extends Fragment {
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private String mParam1;
     private String mParam2;
     private static final String ARG_FRAG_TYPE = "param1";
@@ -56,13 +64,15 @@ public class contestFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view;
+        final View view;
         view = inflater.inflate(R.layout.fragment_contest, container,
                 false);
         rg1 = (RadioGroup) view.findViewById(R.id.RG1);
         checked1 = rg1.getCheckedRadioButtonId();
+        final RadioButton rb1 = (RadioButton) view.findViewById(checked1);
         rg2 = (RadioGroup) view.findViewById(R.id.RG2);
         checked2 = rg2.getCheckedRadioButtonId();
+        final RadioButton rb2 = (RadioButton) view.findViewById(checked2);
         tV1 = (TextView) view.findViewById(R.id.textView3);
         Et1 = (EditText) view.findViewById(R.id.Nom); //nom du match
         Et2 = (EditText) view.findViewById(R.id.editText); // date du match
@@ -73,42 +83,41 @@ public class contestFragment extends Fragment {
             public void onClick(View v) {
                 // in onCreate or any event where your want the user to
                 // select a file
-                // Checking camera availability
-                if (!isDeviceSupportCamera()) {
-                    Toast.makeText(getActivity().getApplicationContext(),
-                            "Sorry! Your device doesn't support camera",
-                            Toast.LENGTH_LONG).show();
-                    // will close the app if the device doesn't have camera
-                } else {
-                    String fileName = "new-photo-name.jpg";
-                    ContentValues values = new ContentValues();
-                    values.put(MediaStore.Images.Media.TITLE, fileName);
-                    values.put(MediaStore.Images.Media.DESCRIPTION,"Image capture by camera");
-                    //imageUri is the current activity attribute, define and save it for later usage (also in onSaveInstanceState)
-                    imageUri = getActivity().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-                    intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-                    startActivityForResult(intent, TAKE_PICTURE);
+
+                //user permission
+                if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+
                 }
+                takePhoto();
+
             }
 
         });
-        Button Bstart = (Button) view.findViewById(R.id.contest);
+        final Button Bstart = (Button) view.findViewById(R.id.contest);
         Bstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO begin thread and store data
                 ContestBDD contestBDD = new ContestBDD(getContext());
-                Contest contest = new Contest(rg1.getTransitionName(), Et1.getText().toString(),
-                        rg2.getTransitionName(), Et2.getText().toString(),
-                        Et3.getText().toString(), null, null, filemanagerstring);
+
+                Contest contest = new Contest(rb1.getText().toString(), Et1.getText().toString(),
+                        rb2.getText().toString(), Et2.getText().toString(),
+                        Et3.getText().toString(), "4-4-2", "4-4-2", filemanagerstring);
                 contestBDD.open();
                 contestBDD.insertContest(contest);
                 Contest contestFromBDD = contestBDD.getContest(contest.getNom());
                 if(contestFromBDD != null){
                     Toast.makeText(getContext(),contestFromBDD.toString(), Toast.LENGTH_LONG).show();
                 }
+                contestBDD.close();
 
 
             }
@@ -143,6 +152,49 @@ public class contestFragment extends Fragment {
 // no camera on this device
         return getActivity().getApplicationContext().getPackageManager().hasSystemFeature(
                 PackageManager.FEATURE_CAMERA);
+    }
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.return;
+                    // Checking camera availability
+                    Toast.makeText(getActivity(),"Camera fct worked",Toast.LENGTH_SHORT).show();
+                    if (!isDeviceSupportCamera()) {
+                        Toast.makeText(getActivity().getApplicationContext(),
+                                "Sorry! Your device doesn't support camera",
+                                Toast.LENGTH_LONG).show();
+                    } else {
+                        takePhoto();
+                    }
+                    return;
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(this.getContext(), "External storage permission is denied", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+            }
+            // other 'case' lines to check for other
+            // permissions this app might request
+            default:super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        }
+    }
+    public void takePhoto(){
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        File photo = new File(Environment.getExternalStorageDirectory(),  "Pic.jpg");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                Uri.fromFile(photo));
+        imageUri = Uri.fromFile(photo);
+        filemanagerstring = imageUri.getPath();
+        getActivity().startActivityForResult(intent, 100);
     }
 
 }
