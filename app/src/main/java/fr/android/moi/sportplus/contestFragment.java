@@ -1,7 +1,7 @@
 package fr.android.moi.sportplus;
 
 import android.Manifest;
-import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,21 +28,22 @@ import java.io.File;
 /**
  * Created by Admin on 05/04/2017.
  */
-public class contestFragment extends Fragment {
+public class contestFragment extends Fragment implements onContestFragmentCreated.OnFragmentInteractionListener{
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private String mParam1;
     private String mParam2;
     private static final String ARG_FRAG_TYPE = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private RadioGroup rg1;
-    private RadioGroup rg2;
-    private TextView tV1, tV2, tV3;
+    private RadioGroup rg1,rg2,rg3;
+    private TextView tV1;
     private EditText Et1, Et2, Et3;
-    private int checked1,checked2;
+    private int checked1,checked2, checked3,time;
     private static final int TAKE_PICTURE = 1;
     Uri imageUri;
-
+    private Contest contest;
     private String filemanagerstring;
+    private onContestFragmentCreated fragmentCreated;
+    private OnFragmentInteractionListener mListener;
     public contestFragment(){
 
     }
@@ -62,16 +64,25 @@ public class contestFragment extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view;
+       View view;
         view = inflater.inflate(R.layout.fragment_contest, container,
                 false);
         rg1 = (RadioGroup) view.findViewById(R.id.RG1);
         checked1 = rg1.getCheckedRadioButtonId();
         final RadioButton rb1 = (RadioButton) view.findViewById(checked1);
         rg2 = (RadioGroup) view.findViewById(R.id.RG2);
+        rg3 = (RadioGroup) view.findViewById(R.id.RG3);
         checked2 = rg2.getCheckedRadioButtonId();
+        checked3 = rg3.getCheckedRadioButtonId();
+        RadioButton rb = (RadioButton) view.findViewById(R.id.RB5);
+        RadioButton rb3 = (RadioButton) view.findViewById(checked3);
+        if (rb3.getId() == rb.getId())
+            time = 60;
+        else
+            time = 120;
         final RadioButton rb2 = (RadioButton) view.findViewById(checked2);
         tV1 = (TextView) view.findViewById(R.id.textView3);
         Et1 = (EditText) view.findViewById(R.id.Nom); //nom du match
@@ -107,19 +118,15 @@ public class contestFragment extends Fragment {
             public void onClick(View v) {
                 //TODO begin thread and store data
                 ContestBDD contestBDD = new ContestBDD(getContext());
-
-                Contest contest = new Contest(rb1.getText().toString(), Et1.getText().toString(),
-                        rb2.getText().toString(), Et2.getText().toString(),
-                        Et3.getText().toString(), "4-4-2", "4-4-2", filemanagerstring);
+                contest = new Contest(rb1.getText().toString(), Et1.getText().toString(),
+                rb2.getText().toString(), Et2.getText().toString(),
+                Et3.getText().toString(), "4-4-2", "4-4-2", filemanagerstring);
                 contestBDD.open();
                 contestBDD.insertContest(contest);
-                Contest contestFromBDD = contestBDD.getContest(contest.getNom());
-                if(contestFromBDD != null){
-                    Toast.makeText(getContext(),contestFromBDD.toString(), Toast.LENGTH_LONG).show();
-                }
+                if (mListener != null)
+                    mListener.onFragmentInteraction(null);
+                //Show(new onContestFragmentCreated(),contest,time);
                 contestBDD.close();
-
-
             }
         });
         return view;
@@ -127,23 +134,28 @@ public class contestFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
             if (requestCode == TAKE_PICTURE) {
-                Uri selectedImageUri = null;
+                Uri selectedImageUri;
                 selectedImageUri = imageUri;
                 filemanagerstring = selectedImageUri.getPath();
             }
-
+    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Object ref);
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
+
     /**
      * Checking device has camera hardware or not
      * */
@@ -163,7 +175,6 @@ public class contestFragment extends Fragment {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.return;
                     // Checking camera availability
-                    Toast.makeText(getActivity(),"Camera fct worked",Toast.LENGTH_SHORT).show();
                     if (!isDeviceSupportCamera()) {
                         Toast.makeText(getActivity().getApplicationContext(),
                                 "Sorry! Your device doesn't support camera",
@@ -187,6 +198,7 @@ public class contestFragment extends Fragment {
 
         }
     }
+
     public void takePhoto(){
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         File photo = new File(Environment.getExternalStorageDirectory(),  "Pic.jpg");
@@ -197,4 +209,30 @@ public class contestFragment extends Fragment {
         getActivity().startActivityForResult(intent, 100);
     }
 
+    @Override
+    public void onFragmentInteraction(Object ref) {
+        System.out.println((String) ref);
+        Toast.makeText(getContext(), (String) ref, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void Show(onContestFragmentCreated fragment, Contest contest, int time) {
+        fragment = onContestFragmentCreated.newInstance(contest.getId(),contest.getNom(), time);
+        FragmentTransaction fgt = getActivity().getSupportFragmentManager().beginTransaction();
+        fgt.replace(R.id.fragment_contest, fragment).commit();
+        fgt.addToBackStack("new fragment");
+    }
+    public Contest getContest(){
+        return contest;
+    }
+    public int getTime(){
+        return time;
+    }
+
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Object ref);
+        void Show(contestFragment fragment);
+    }
 }

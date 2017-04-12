@@ -82,10 +82,18 @@ public class ContestBDD {
                 COL_ID, COL_E_DOMICILE, COL_COMPOSITION_EXT, COL_DATE, COL_LIEU,
                 COL_COMPOSITION_DOM, COL_COMPOSITION_EXT, COL_IMAGEPATH,
                 COL_NOM}, COL_NOM + " LIKE \"" + param +"\"",null,null,null,null);
-        return cursorToLivre(cursor);
+        return cursorToContest(cursor);
+    }
+    public int getNombreContest(){
+        Cursor cursor = bdd.query(TABLE_CONTEST, new String[]{
+                COL_ID, COL_E_DOMICILE, COL_COMPOSITION_EXT, COL_DATE, COL_LIEU,
+                COL_COMPOSITION_DOM, COL_COMPOSITION_EXT, COL_IMAGEPATH,
+                COL_NOM}, COL_NOM ,null,null,null,null);
+        int count = cursor.getCount();
+        return count;
     }
 
-    private Contest cursorToLivre(Cursor cursor) {
+    private Contest cursorToContest(Cursor cursor) {
         if (cursor.getCount() == 0) {
             return null;
         }

@@ -94,12 +94,11 @@ public class Contest {
     }
 
     public String toString(){
-        return "ID : "+id+"\nNom de la rencontre: "+nom
+        return "ID: "+id+"\nNom de la rencontre: "+nom
                 +"\nEquipe à domicile : "+dom
                 +"\nEquipe à l'extérieur : "+ext
                 +"\nDate du match : "+date
                 +"\nLieu du match : "+lieu
-                +"\nEquipe à l'extérieur : "+ext
                 +"\nComposition equipe à domicile : "+composition_dom
                 +"\nComposition equipe extérieur : "+composition_ext
                 +"\nLien vers image : "+imagePath;

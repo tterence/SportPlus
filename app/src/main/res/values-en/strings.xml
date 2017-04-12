@@ -8,4 +8,17 @@
     <string name="team2">Arsenal</string>
     <string name="time1">time: 1min</string>
     <string name="time2">time: 2min</string>
+    <string name="Nom">Pick contest name</string>
+    <string name="choisir_la_date_de_rencontre">Pick the date of contest</string>
+    <string name="choisir_la_dur_e_r_elle_de_rencpntre">Pick the time elapsed</string>
+    <string name="composition">Pick starting 11</string>
+    <string name="contestphoto">Picture of the contest</string>
+    <string name="getteam1">Team 1 : %1$s</string>
+    <string name="getteam2">Team 2 : %1$s</string>
+    <string name="image">picture</string>
+    <string name="info">ID: %1$d \n<b>Name of the contest</b>: %2$s\n                \n<b>Home team</b> : %3$s\n                \n<b>Away teamr</b> : %4$s\n                \n<b>Date of the contest</b> : %5$s\n                \n<b>Location of the contest :</b> %6$s\n                \n<b>Home\'s starting 11</b> : %7$s\n                \n<b>Away\'s starting 11 :</b> : %8$s</string>
+    <string name="lieu">Pick the location of the contest</string>
+    <string name="teamchoice">Pick the teams</string>
+    <string name="timeelapsed">End of the contest %1$s vs %2$s!</string>
+    <string name="timelapse">Remaining time: %1$d:%2$d</string>
 </resources>

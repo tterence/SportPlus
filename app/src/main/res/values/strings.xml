@@ -1,22 +1,22 @@
 <resources>
     <string name="app_name">SportPlus</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings" translatable="false">Settings</string>
     <string name="contest">Créer un match</string>
     <string name="historique">Historique</string>
-    <string name="map">Map</string>
-    <string name="message">Messages</string>
-    <string name="share">Share</string>
-    <string name="slideshow">Slideshow</string>
-    <string name="tools">Tools</string>
-    <string name="android_studio_android_com">android.studio@android.com</string>
-    <string name="android_studio">Android Studio</string>
+    <string name="map" translatable="false">Map</string>
+    <string name="message" translatable="false">Messages</string>
+    <string name="share" translatable="false">Share</string>
+    <string name="slideshow" translatable="false">Slideshow</string>
+    <string name="tools" translatable="false">Tools</string>
+    <string name="android_studio_android_com" translatable="false">android.studio@android.com</string>
+    <string name="android_studio" translatable="false">Android Studio</string>
     <string name="image">image</string>
-    <string name="title_activity_maps_fragment">Map</string>
-    <string name="launcher">image launcher</string>
+    <string name="title_activity_maps_fragment" translatable="false">Map</string>
+    <string name="launcher" translatable="false">image launcher</string>
     <string name="team1">Paris SG</string>
     <string name="team2">Olympique Marseille</string>
     <string name="start">Commencer match</string>
@@ -28,6 +28,10 @@
     <string name="composition">Choisir la composition de chaque équipe</string>
     <string name="lieu">Choisir le lieu de rencontre</string>
     <string name="Nom">Choisir le nom de la rencontre</string>
+    <string name="getteam1">Equipe 1 : %1$s</string>
+    <string name="getteam2">Equipe 2 : %1$s</string>
+    <string name="score" translatable="false">%1$s vs %2$s : %3$d - %4$d</string>
+    <string name="contestphoto">photo du match</string>
     <string-array name="gardien">
         <item>Kévin Trapp</item>
         <item>Alphonse Aréola</item>
@@ -44,11 +48,21 @@
         <item>Edinson Cavani</item>
         <item>Hatem Ben Arfa</item>
     </string-array>
-    <string-array name="psg">
+    <array name="psg">
         <item>@array/gardien</item>
         <item>@array/defenseur</item>
         <item>@array/milieu</item>
         <item>@array/attaquant</item>
-    </string-array>
+    </array>
+    <string name="timelapse">Temps restant: %1$d:%2$d</string>
+    <string name="timeelapsed">Fin de la rencontre %1$s vs %2$s!</string>
+    <string name="info">ID: %1$d \n<b>Nom de la rencontre</b>: %2$s
+                \n<b>Equipe à domicile</b> : %3$s
+                \n<b>Equipe à l\'extérieur</b> : %4$s
+                \n<b>Date du match</b> : %5$s
+                \n<b>Lieu du match :</b> %6$s
+                \n<b>Composition equipe à domicile</b> : %7$s
+                \n<b>Composition equipe extérieur :</b> : %8$s
+    </string>
 
 </resources>

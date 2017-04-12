@@ -41,4 +41,9 @@ public class MySQLite extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE " + TABLE_CONTEST + ";");
         onCreate(db);
     }
+    @Override
+    protected void finalize() throws Throwable {
+        this.close();
+        super.finalize();
+    }
 }

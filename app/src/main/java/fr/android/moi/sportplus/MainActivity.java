@@ -2,7 +2,6 @@ package fr.android.moi.sportplus;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -16,9 +15,13 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, myFragment.OnFragmentInteractionListener, contestFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, myFragment.OnFragmentInteractionListener,
+        contestFragment.OnFragmentInteractionListener, onContestFragmentCreated.OnFragmentInteractionListener,
+        historiqueFragment.OnFragmentInteractionListener {
     private myFragment myFragment;
     private contestFragment contestFragment;
+    private onContestFragmentCreated fragmentCreated;
+    private historiqueFragment historiqueFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +36,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 FragmentTransaction fgt = getSupportFragmentManager().beginTransaction();
                 fgt.addToBackStack("new fragment");
-                contestFragment= contestFragment.newInstance("contest","contestFragment");
-                fgt.replace(R.id.content_main, contestFragment).commit();
+                Show(contestFragment);
             }
         });
 
@@ -46,8 +48,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
     }
 
     @Override
@@ -90,13 +90,14 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction fgt = getSupportFragmentManager().beginTransaction();
         fgt.addToBackStack("new fragment");
         if (id == R.id.nav_contest) {
-            contestFragment= contestFragment.newInstance("contest","contestFragment");
-            fgt.replace(R.id.content_main, contestFragment).commit();
-        } else if (id == R.id.nav_historique) {
+            Show(contestFragment);
 
+        } else if (id == R.id.nav_historique) {
+            Show(historiqueFragment);
         } else if (id == R.id.nav_map) {
             myFragment = myFragment.newInstance("map", "mapFragment");
             fgt.replace(R.id.content_main, myFragment).commit();
+            fgt.addToBackStack("new fragment");
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
@@ -114,5 +115,29 @@ public class MainActivity extends AppCompatActivity
     public void onFragmentInteraction(Object ref) {
         System.out.println((String) ref);
         Toast.makeText(this, (String) ref, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void Show(onContestFragmentCreated fragment, Contest contest , int time) {
+        fragment = onContestFragmentCreated.newInstance(contest.getId(),contest.getNom(), time);
+        FragmentTransaction fgt = getSupportFragmentManager().beginTransaction();
+        fgt.replace(R.id.fragment_contest, fragment).commit();
+        fgt.addToBackStack("new fragment");
+    }
+
+    @Override
+    public void Show(contestFragment fragment) {
+        fragment = fr.android.moi.sportplus.contestFragment.newInstance("contest","contestFragment");
+        FragmentTransaction fgt = getSupportFragmentManager().beginTransaction();
+        fgt.replace(R.id.content_main, fragment).commit();
+        fgt.addToBackStack("new fragment");
+    }
+
+    @Override
+    public void Show(historiqueFragment fragment) {
+        fragment = historiqueFragment.newInstance("contest","contestFragment");
+        FragmentTransaction fgt = getSupportFragmentManager().beginTransaction();
+        fgt.replace(R.id.content_main, fragment).commit();
+        fgt.addToBackStack("new fragment");
     }
 }

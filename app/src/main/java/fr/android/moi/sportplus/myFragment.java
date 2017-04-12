@@ -191,11 +191,13 @@ public class myFragment extends Fragment implements OnMapReadyCallback,LocationL
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
+        googleMap.clear();
         // Sets the map type to be "hybrid"
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         // Add a marker in Sydney and move the camera
-        mMap.clear();
+
         LatLng mPos = new LatLng(lat, lng);
         mMap.addMarker(new MarkerOptions().position(mPos).title("My Position"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(mPos));
@@ -210,7 +212,7 @@ public class myFragment extends Fragment implements OnMapReadyCallback,LocationL
 
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.return;
-                    this.onStart();
+                    onMapReady(mMap);
                     return;
                 } else {
 
